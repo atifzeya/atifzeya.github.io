@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV — YourName</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-content { padding-left: 3rem; padding-right: 3rem; }
+
+    .cv-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+    }
+
+    /* Sidebar */
+    .cv-avatar {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+      /* To use a real photo, replace the div with:
+         <img src="photos/avatar.jpg" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid var(--border);"> */
+    }
+    .cv-name { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 0.25rem; }
+    .cv-role {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .cv-divider { border: none; border-top: 1px solid var(--border); margin: 1.4rem 0; }
+    .cv-info-row { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .cv-info-row span { color: var(--text); }
+    .cv-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+    .cv-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .cv-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      padding: 0.22rem 0.55rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .cv-lang-row { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.35rem; }
+    .cv-lang-dots { color: var(--accent); }
+
+    /* Main */
+    .cv-section { margin-bottom: 3rem; }
+    .cv-section-label {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .cv-about {
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: rgba(226,221,214,0.8);
+    }
+    .cv-entry { margin-bottom: 2rem; }
+    .cv-entry-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .cv-entry-title { font-family: var(--serif); font-size: 1.18rem; }
+    .cv-entry-period {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cv-entry-org { font-size: 0.8rem; color: var(--muted); margin: 0.2rem 0 0.5rem; }
+    .cv-entry-desc { font-size: 0.86rem; color: rgba(226,221,214,0.65); line-height: 1.65; }
+
+    .cv-download {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      margin-top: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cv-download:hover { background: var(--accent); color: var(--bg); }
+
+    @media (max-width: 900px) {
+      .cv-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">YourName</a>
+  <ul class="nav-links">
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="movies.html">Movies</a></li>
+    <li><a href="random.html">Random</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <div class="page-header">
+    <div class="page-tag">02 — Resume</div>
+    <h1 class="page-title">Curriculum <em>Vitae</em></h1>
+  </div>
+
+  <div class="cv-layout">
+    <!-- Sidebar -->
+    <div class="reveal">
+      <div class="cv-avatar">📷</div>
+      <div class="cv-name">Your Name</div>
+      <div class="cv-role">Photographer &amp; Designer</div>
+      <hr class="cv-divider"/>
+      <div class="cv-info-row">📍 <span>Łódź, Poland</span></div>
+      <div class="cv-info-row">📧 <span>you@email.com</span></div>
+      <div class="cv-info-row">🌐 <span>yourusername.github.io</span></div>
+      <div class="cv-info-row">📱 <span>+48 000 000 000</span></div>
+      <hr class="cv-divider"/>
+      <div class="cv-label">Skills</div>
+      <div class="cv-skills">
+        <span class="cv-tag">Photography</span>
+        <span class="cv-tag">Lightroom</span>
+        <span class="cv-tag">Photoshop</span>
+        <span class="cv-tag">Film</span>
+        <span class="cv-tag">HTML/CSS</span>
+        <span class="cv-tag">Writing</span>
+        <span class="cv-tag">Figma</span>
+        <span class="cv-tag">Video</span>
+      </div>
+      <hr class="cv-divider"/>
+      <div class="cv-label">Languages</div>
+      <div class="cv-lang-row">English <span class="cv-lang-dots">●●●●●</span></div>
+      <div class="cv-lang-row">Polish <span class="cv-lang-dots">●●●●●</span></div>
+      <div class="cv-lang-row">Spanish <span class="cv-lang-dots">●●●○○</span></div>
+    </div>
+
+    <!-- Main -->
+    <div>
+      <div class="cv-section reveal">
+        <div class="cv-section-label">About</div>
+        <p class="cv-about">I'm a photographer and visual storyteller with a passion for capturing authentic moments. With a background in both digital and analogue photography, I bring a thoughtful eye to every project. When I'm not behind a camera, I write about visual culture, watch films, or explore new places.</p>
+      </div>
+
+      <div class="cv-section reveal">
+        <div class="cv-section-label">Experience</div>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Freelance Photographer</div>
+            <div class="cv-entry-period">2021 — Present</div>
+          </div>
+          <div class="cv-entry-org">Self-employed</div>
+          <div class="cv-entry-desc">Commercial, portrait, and editorial photography. Clients include local businesses, magazines, and private commissions. Full post-production pipeline managed independently.</div>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Visual Content Creator</div>
+            <div class="cv-entry-period">2019 — 2021</div>
+          </div>
+          <div class="cv-entry-org">Company Name, City</div>
+          <div class="cv-entry-desc">Produced photo and video content for social media reaching 200k+ followers. Managed full post-production pipeline and brand visual identity.</div>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Photography Assistant</div>
+            <div class="cv-entry-period">2017 — 2019</div>
+          </div>
+          <div class="cv-entry-org">Studio Name, City</div>
+          <div class="cv-entry-desc">Assisted lead photographers on commercial and editorial shoots. Managed equipment, lighting setups, and client communication.</div>
+        </div>
+      </div>
+
+      <div class="cv-section reveal">
+        <div class="cv-section-label">Education</div>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">BA Photography &amp; Visual Arts</div>
+            <div class="cv-entry-period">2014 — 2018</div>
+          </div>
+          <div class="cv-entry-org">University Name, City</div>
+          <div class="cv-entry-desc">Graduated with honours. Thesis on documentary photography and urban identity. Exchange semester at a partner institution in Berlin.</div>
+        </div>
+      </div>
+
+      <div class="cv-section reveal">
+        <div class="cv-section-label">Awards &amp; Recognition</div>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Award or Exhibition Name</div>
+            <div class="cv-entry-period">2023</div>
+          </div>
+          <div class="cv-entry-org">Organising body</div>
+          <div class="cv-entry-desc">Brief description of the award or what was exhibited.</div>
+        </div>
+      </div>
+
+      <a href="cv.pdf" class="cv-download reveal" download>↓ Download PDF version</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

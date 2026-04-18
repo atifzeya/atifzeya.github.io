@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — YourName</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-content { padding-left: 3rem; padding-right: 3rem; }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      line-height: 1.65;
+      color: rgba(226,221,214,0.85);
+      margin-bottom: 3rem;
+    }
+    .contact-list { margin-bottom: 2rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: padding-left 0.25s, color 0.2s;
+    }
+    .contact-link:first-child { border-top: 1px solid var(--border); }
+    .contact-link:hover { padding-left: 0.6rem; color: var(--accent); }
+    .contact-link-icon { font-size: 1.1rem; width: 2rem; text-align: center; flex-shrink: 0; }
+    .contact-link-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 85px;
+      flex-shrink: 0;
+    }
+    .contact-link-value { font-size: 0.93rem; }
+    .contact-availability {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .avail-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #6aad8e;
+      box-shadow: 0 0 6px #6aad8e;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Form */
+    .contact-form-wrap { }
+    .form-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: 1.8rem;
+      color: var(--text);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.3rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      -webkit-appearance: none;
+    }
+    .form-group select { cursor: none; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 150px; }
+    .form-submit {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      cursor: none;
+      transition: opacity 0.2s, transform 0.15s;
+      font-weight: 400;
+    }
+    .form-submit:hover { opacity: 0.85; transform: translateY(-2px); }
+    #form-ok {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent2);
+      display: none;
+      margin-top: -0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
+    }
+    @media (max-width: 500px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">YourName</a>
+  <ul class="nav-links">
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="movies.html">Movies</a></li>
+    <li><a href="random.html">Random</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <div class="page-header">
+    <div class="page-tag">03 — Get in touch</div>
+    <h1 class="page-title">Say <em>Hello</em></h1>
+  </div>
+
+  <div class="contact-layout">
+    <!-- Left: info -->
+    <div class="reveal">
+      <p class="contact-intro">"Whether it's a commission, a collaboration, or just a conversation about film cameras — my inbox is open."</p>
+
+      <div class="contact-list">
+        <a href="mailto:you@email.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">you@email.com</span>
+        </a>
+        <a href="https://instagram.com/yourhandle" target="_blank" class="contact-link">
+          <span class="contact-link-icon">📸</span>
+          <span class="contact-link-label">Instagram</span>
+          <span class="contact-link-value">@yourhandle</span>
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">yourprofile</span>
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" class="contact-link">
+          <span class="contact-link-icon">⌨</span>
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">yourusername</span>
+        </a>
+        <a href="https://twitter.com/yourhandle" target="_blank" class="contact-link">
+          <span class="contact-link-icon">𝕏</span>
+          <span class="contact-link-label">Twitter/X</span>
+          <span class="contact-link-value">@yourhandle</span>
+        </a>
+      </div>
+
+      <div class="contact-availability">
+        <span class="avail-dot"></span>
+        Available for commissions &amp; collaborations
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="contact-form-wrap reveal">
+      <div class="form-title">Send a message</div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" placeholder="Jane Doe"/>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" placeholder="jane@email.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-subject">Subject</label>
+          <select id="f-subject">
+            <option value="">Select a topic…</option>
+            <option>Photography commission</option>
+            <option>Collaboration</option>
+            <option>Just saying hi</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send message →</button>
+        <div id="form-ok">✓ Thanks! (To enable real sending, connect Formspree or EmailJS.)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+  function submitForm() {
+    const n = document.getElementById('f-name').value.trim();
+    const e = document.getElementById('f-email').value.trim();
+    const m = document.getElementById('f-msg').value.trim();
+    if (!n || !e || !m) { alert('Please fill in name, email and message.'); return; }
+    const ok = document.getElementById('form-ok');
+    ok.style.display = 'block';
+    ['f-name','f-email','f-subject','f-msg'].forEach(id => document.getElementById(id).value = '');
+    setTimeout(() => ok.style.display = 'none', 6000);
+  }
+</script>
+</body>
+</html>

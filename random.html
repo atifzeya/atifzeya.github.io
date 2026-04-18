@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random — YourName</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-content { padding-left: 3rem; padding-right: 3rem; }
+
+    /* Masonry-ish grid */
+    .random-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .r-block {
+      padding: 2.6rem 2.4rem;
+      background: var(--bg);
+      position: relative;
+    }
+    .r-block:nth-child(3n+2) { background: var(--surface); }
+    .r-block:nth-child(3n)   { background: var(--surface2); }
+
+    .r-icon { font-size: 2.1rem; margin-bottom: 1rem; display: block; }
+    .r-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .r-body {
+      font-size: 0.86rem;
+      color: rgba(226,221,214,0.65);
+      line-height: 1.75;
+    }
+    .r-body a { color: var(--accent2); text-decoration: none; }
+    .r-body a:hover { text-decoration: underline; }
+
+    /* Blockquote */
+    .r-quote {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text);
+      border-left: 2px solid var(--accent);
+      padding-left: 1.2rem;
+      margin: 0.5rem 0 1rem;
+    }
+    .r-quote-attr {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+    }
+
+    /* List */
+    .r-list { list-style: none; }
+    .r-list li {
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: rgba(226,221,214,0.65);
+      display: flex; align-items: flex-start; gap: 0.7rem;
+    }
+    .r-list li:last-child { border-bottom: none; }
+    .r-list li::before { content: '→'; color: var(--accent); font-size: 0.68rem; margin-top: 0.18rem; flex-shrink: 0; }
+
+    /* Now playing widget */
+    .now-playing {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .np-disc {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg, var(--border) 0deg);
+      animation: spin 4s linear infinite;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .np-disc::after {
+      content: '';
+      position: absolute; inset: 12px;
+      border-radius: 50%;
+      background: var(--surface2);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .np-info { }
+    .np-track { font-size: 0.85rem; font-family: var(--serif); font-style: italic; }
+    .np-artist { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-top: 0.2rem; }
+
+    /* Map placeholder */
+    .places-map {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 1.4rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .places-map-inner { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    /* Tag cloud */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .tag-pill {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tag-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Wider block */
+    .r-block.wide {
+      grid-column: span 2;
+    }
+    .wide-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .random-grid { grid-template-columns: repeat(2, 1fr); }
+      .r-block.wide { grid-column: span 2; }
+      .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
+    }
+    @media (max-width: 580px) {
+      .random-grid { grid-template-columns: 1fr; }
+      .r-block.wide { grid-column: span 1; }
+      .wide-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">YourName</a>
+  <ul class="nav-links">
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="movies.html">Movies</a></li>
+    <li><a href="random.html">Random</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <div class="page-header">
+    <div class="page-tag">05 — Miscellaneous</div>
+    <h1 class="page-title">Random <em>Things</em></h1>
+  </div>
+
+  <div class="random-grid">
+
+    <!-- Quote -->
+    <div class="r-block reveal">
+      <span class="r-icon">💭</span>
+      <div class="r-title">A Quote I Keep</div>
+      <div class="r-body">
+        <div class="r-quote">
+          "The camera is an instrument that teaches people how to see without a camera."
+          <div class="r-quote-attr">— Dorothea Lange</div>
+        </div>
+        <p>I come back to this constantly. Photography changed the way I notice things — even when I'm not shooting.</p>
+      </div>
+    </div>
+
+    <!-- Music -->
+    <div class="r-block reveal">
+      <span class="r-icon">🎵</span>
+      <div class="r-title">Currently Listening</div>
+      <div class="r-body">
+        <div class="now-playing">
+          <div class="np-disc"></div>
+          <div class="np-info">
+            <div class="np-track">Ambient 1: Music for Airports</div>
+            <div class="np-artist">Brian Eno</div>
+          </div>
+        </div>
+        <ul class="r-list">
+          <li>Nils Frahm — All Melody</li>
+          <li>Arooj Aftab — Vulture Prince</li>
+          <li>Ryuichi Sakamoto — async</li>
+          <li>Arthur Russell — World of Echo</li>
+          <li>Talk Talk — Spirit of Eden</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Reading -->
+    <div class="r-block reveal">
+      <span class="r-icon">📚</span>
+      <div class="r-title">Reading List</div>
+      <div class="r-body">
+        <ul class="r-list">
+          <li>Camera Lucida — Roland Barthes</li>
+          <li>On Photography — Susan Sontag</li>
+          <li>Ways of Seeing — John Berger</li>
+          <li>The Ongoing Moment — Geoff Dyer</li>
+          <li>Understanding Comics — Scott McCloud</li>
+          <li>Regarding the Pain of Others — Sontag</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Places — wide block -->
+    <div class="r-block wide reveal">
+      <span class="r-icon">🌍</span>
+      <div class="r-title">Places I've Photographed</div>
+      <div class="r-body">
+        <div class="wide-inner">
+          <ul class="r-list">
+            <li>Tokyo, Japan — 2024</li>
+            <li>Kyoto, Japan — 2024</li>
+            <li>Lisbon, Portugal — 2023</li>
+            <li>Reykjavik, Iceland — 2022</li>
+            <li>Berlin, Germany — 2022</li>
+            <li>Łódź, Poland — always</li>
+          </ul>
+          <div>
+            <div class="places-map">
+              <div class="places-map-inner">🗺</div>
+              Add an embedded Google Map here.<br/>
+              Maps → Share → Embed
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gear -->
+    <div class="r-block reveal">
+      <span class="r-icon">⚙️</span>
+      <div class="r-title">My Gear</div>
+      <div class="r-body">
+        <ul class="r-list">
+          <li>Leica M6 (film)</li>
+          <li>Fujifilm X-T5 (digital)</li>
+          <li>35mm f/1.4 Summilux</li>
+          <li>Kodak Portra 400</li>
+          <li>Ilford HP5 Plus</li>
+          <li>Lightroom + VSCO</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Fun facts -->
+    <div class="r-block reveal">
+      <span class="r-icon">🎲</span>
+      <div class="r-title">Some Facts</div>
+      <div class="r-body">
+        <ul class="r-list">
+          <li>Watched 400+ films and counting</li>
+          <li>Shot 200+ rolls of film</li>
+          <li>Drinks too much coffee ☕</li>
+          <li>Learning Japanese very slowly</li>
+          <li>Night owl. Always.</li>
+          <li>Has strong opinions about aspect ratios</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Interests tag cloud -->
+    <div class="r-block reveal">
+      <span class="r-icon">🏷</span>
+      <div class="r-title">Interests</div>
+      <div class="r-body">
+        <p style="margin-bottom:1rem;">The things that keep me occupied when I'm not photographing.</p>
+        <div class="tag-cloud" data-hover>
+          <span class="tag-pill">Analogue Photography</span>
+          <span class="tag-pill">Film Theory</span>
+          <span class="tag-pill">Ambient Music</span>
+          <span class="tag-pill">Typography</span>
+          <span class="tag-pill">Urbanism</span>
+          <span class="tag-pill">Japanese Cinema</span>
+          <span class="tag-pill">Dark Rooms</span>
+          <span class="tag-pill">Architecture</span>
+          <span class="tag-pill">Photobooks</span>
+          <span class="tag-pill">Night Photography</span>
+          <span class="tag-pill">Zines</span>
+          <span class="tag-pill">Coffee</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspirations -->
+    <div class="r-block reveal">
+      <span class="r-icon">✨</span>
+      <div class="r-title">Photographers I Admire</div>
+      <div class="r-body">
+        <ul class="r-list">
+          <li>Vivian Maier</li>
+          <li>Saul Leiter</li>
+          <li>Daido Moriyama</li>
+          <li>Diane Arbus</li>
+          <li>Fan Ho</li>
+          <li>Sebastião Salgado</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Currently working on -->
+    <div class="r-block reveal">
+      <span class="r-icon">🔧</span>
+      <div class="r-title">Currently Working On</div>
+      <div class="r-body">
+        <ul class="r-list">
+          <li>A long-term project on urban loneliness</li>
+          <li>Scanning 5 years of film negatives</li>
+          <li>This website (obviously)</li>
+          <li>Learning darkroom printing</li>
+        </ul>
+        <p style="margin-top:1rem;font-size:0.82rem;color:var(--muted);">Last updated: April 2025</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
