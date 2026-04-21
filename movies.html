@@ -88,6 +88,30 @@
       padding: 0.12rem 0.38rem; margin-top: 0.35rem;
     }
 
+    <!-- In #grid-view -->
+<div class="movie-card reveal" data-genre="drama">
+  <div class="movie-poster">
+    <img src="photos/posters/your-movie.jpg" alt="Movie Title"/>
+    <!-- Or use an emoji placeholder if you have no poster: -->
+    <!-- <span style="font-size:3rem">🎬</span> -->
+    <div class="movie-rating">8.5</div>
+  </div>
+  <div class="srk">Your Movie Title</div>
+  <div class="movie-meta">Director · Year</div>
+  <span class="movie-genre">Drama</span>
+</div>
+
+<!-- Also add a matching row in #list-view -->
+<div class="list-row" data-genre="drama">
+  <div>
+    <div class="list-title">Your Movie Title</div>
+    <div class="list-dir">Director Full Name</div>
+  </div>
+  <div><span class="list-genre-tag">Drama</span></div>
+  <div class="list-year">2023</div>
+  <div class="list-rating">8.5</div>
+</div>
+
     /* List view */
     #list-view { display: none; }
     .list-header {
