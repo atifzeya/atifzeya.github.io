@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tokyo After Midnight — YourName</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .post-content { max-width: 740px; margin: 0 auto; padding: 0 3rem 6rem; }
+    .post-hero { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; margin-bottom: 3rem; filter: grayscale(20%); }
+    .post-meta { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .post-title { font-family: var(--serif); font-size: clamp(2.2rem,5vw,3.8rem); font-weight: 300; font-style: italic; line-height: 1.1; margin-bottom: 2rem; }
+    .post-body { font-size: 1.05rem; line-height: 1.9; color: rgba(226,221,214,0.85); }
+    .post-body p { margin-bottom: 1.6rem; }
+    .post-photo { width: 100%; margin: 2.5rem 0; }
+    .post-photo img { width: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: filter 0.4s; }
+    .post-photo img:hover { filter: grayscale(0%); }
+    .post-photo figcaption { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); padding-top: 0.6rem; }
+    .post-photo.half { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-bottom: 3rem; transition: color 0.2s; }
+    .back-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">YourName</a>
+  <ul class="nav-links">
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../cv.html">CV</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../movies.html">Movies</a></li>
+    <li><a href="../random.html">Random</a></li>
+  </ul>
+</nav>
+
+<div class="page-content post-content">
+  <a href="../blog.html" class="back-link">← Back to Blog</a>
+
+  <!-- HERO IMAGE — replace with your photo -->
+  <img class="post-hero" src="../photos/tokyo-hero.jpg" alt="Tokyo at night"/>
+
+  <div class="post-meta">January 2025 &nbsp;·&nbsp; Tokyo, Japan &nbsp;·&nbsp; Fujifilm X-T5</div>
+  <h1 class="post-title">Tokyo After Midnight</h1>
+
+  <div class="post-body">
+    <p>Write your first paragraph here. Tell the story of the shoot — where you were, what you were looking for, what the light was like.</p>
+
+    <!-- Single full-width photo -->
+    <figure class="post-photo">
+      <img src="../photos/tokyo-1.jpg" alt="Shibuya crossing at night"/>
+      <figcaption>Shibuya crossing, 1:30am. Leica M6 · Kodak Portra 400</figcaption>
+    </figure>
+
+    <p>Continue your story here. A second paragraph. What did you notice? What surprised you?</p>
+
+    <!-- Two photos side by side -->
+    <figure class="post-photo half">
+      <img src="../photos/tokyo-2.jpg" alt="Vending machine"/>
+      <img src="../photos/tokyo-3.jpg" alt="Empty street"/>
+    </figure>
+
+    <p>Final thoughts. What does this place mean to you? What would you do differently?</p>
+
+    <!-- Another full-width photo to close -->
+    <figure class="post-photo">
+      <img src="../photos/tokyo-4.jpg" alt="Train station"/>
+      <figcaption>Shinjuku station, just before the last train. 35mm f/1.4</figcaption>
+    </figure>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
+</footer>
+<script src="../shared.js"></script>
+</body>
+</html>
