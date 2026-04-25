@@ -9,62 +9,67 @@
   <style>
     .page-content { padding-left: 3rem; padding-right: 3rem; }
 
-    /* Masonry-ish grid */
+    /* ── Section label ── */
+    .subsection-label {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 4rem 0 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .subsection-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ══════════════════════════════════════
+       RANDOM GRID (quotes, facts, etc.)
+    ══════════════════════════════════════ */
     .random-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--border);
     }
-
     .r-block {
-      padding: 2.6rem 2.4rem;
+      padding: 2.4rem 2.2rem;
       background: var(--bg);
       position: relative;
     }
     .r-block:nth-child(3n+2) { background: var(--surface); }
     .r-block:nth-child(3n)   { background: var(--surface2); }
+    .r-block.wide { grid-column: span 2; }
+    .wide-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-    .r-icon { font-size: 2.1rem; margin-bottom: 1rem; display: block; }
+    .r-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
     .r-title {
       font-family: var(--serif);
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-style: italic;
       margin-bottom: 1rem;
       line-height: 1.2;
     }
-    .r-body {
-      font-size: 0.86rem;
-      color: rgba(226,221,214,0.65);
-      line-height: 1.75;
-    }
+    .r-body { font-size: 0.86rem; color: rgba(226,221,214,0.65); line-height: 1.75; }
     .r-body a { color: var(--accent2); text-decoration: none; }
     .r-body a:hover { text-decoration: underline; }
 
-    /* Blockquote */
     .r-quote {
       font-family: var(--serif);
-      font-size: 1.1rem;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--text);
+      font-size: 1.1rem; font-style: italic;
+      line-height: 1.65; color: var(--text);
       border-left: 2px solid var(--accent);
       padding-left: 1.2rem;
       margin: 0.5rem 0 1rem;
     }
-    .r-quote-attr {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-top: 0.6rem;
-    }
+    .r-quote-attr { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 0.6rem; }
 
-    /* List */
     .r-list { list-style: none; }
     .r-list li {
-      padding: 0.45rem 0;
+      padding: 0.42rem 0;
       border-bottom: 1px solid var(--border);
       font-size: 0.86rem;
       color: rgba(226,221,214,0.65);
@@ -73,79 +78,258 @@
     .r-list li:last-child { border-bottom: none; }
     .r-list li::before { content: '→'; color: var(--accent); font-size: 0.68rem; margin-top: 0.18rem; flex-shrink: 0; }
 
-    /* Now playing widget */
-    .now-playing {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 0.9rem 1.1rem;
-      margin-bottom: 1rem;
-    }
-    .np-disc {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: conic-gradient(var(--accent) 0deg, var(--border) 0deg);
-      animation: spin 4s linear infinite;
-      flex-shrink: 0;
-      position: relative;
-    }
-    .np-disc::after {
-      content: '';
-      position: absolute; inset: 12px;
-      border-radius: 50%;
-      background: var(--surface2);
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .np-info { }
-    .np-track { font-size: 0.85rem; font-family: var(--serif); font-style: italic; }
-    .np-artist { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-top: 0.2rem; }
-
-    /* Map placeholder */
-    .places-map {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 1.4rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .places-map-inner { font-size: 2.5rem; margin-bottom: 0.5rem; }
-
-    /* Tag cloud */
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
     .tag-pill {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      padding: 0.25rem 0.65rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em;
+      padding: 0.22rem 0.6rem;
+      border: 1px solid var(--border); color: var(--muted);
       transition: border-color 0.2s, color 0.2s;
     }
     .tag-pill:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* Wider block */
-    .r-block.wide {
-      grid-column: span 2;
+    .places-map {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 1.4rem; font-family: var(--mono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em; text-align: center;
     }
-    .wide-inner {
+    .places-map-inner { font-size: 2.2rem; margin-bottom: 0.5rem; }
+
+    /* ══════════════════════════════════════
+       MUSIC / YOUTUBE SECTION
+    ══════════════════════════════════════ */
+    .music-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+    .yt-card {
+      background: var(--surface);
+      padding: 0;
+      overflow: hidden;
+    }
+    .yt-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+      border: none;
+      background: #000;
+    }
+    .yt-info {
+      padding: 1rem 1.2rem 1.4rem;
+    }
+    .yt-song {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+    .yt-artist {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════
+       BOOKS SECTION
+    ══════════════════════════════════════ */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Book card */
+    .book-card {
+      cursor: none;
+      position: relative;
+    }
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+    .book-cover img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%);
+      transition: transform 0.5s, filter 0.4s;
+      display: block;
+    }
+    .book-card:hover .book-cover img { transform: scale(1.05); filter: grayscale(0%); }
+
+    /* Placeholder when no image */
+    .book-cover-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: var(--surface2);
+      padding: 1rem;
+      text-align: center;
+    }
+    .book-cover-placeholder .bp-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .book-cover-placeholder .bp-title {
+      font-family: var(--serif);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* Rating badge */
+    .book-rating {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      font-family: var(--mono); font-size: 0.62rem;
+      background: var(--accent); color: var(--bg);
+      padding: 0.18rem 0.42rem; font-weight: 500;
+    }
+
+    /* "Click to read" hint */
+    .book-hint {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .book-card:hover .book-hint { opacity: 1; }
+    .book-hint span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.35rem 0.8rem;
+    }
+
+    .book-title { font-family: var(--serif); font-size: 0.95rem; line-height: 1.25; }
+    .book-author { font-family: var(--mono); font-size: 0.58rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.06em; }
+    .book-genre-tag {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.55rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1px solid var(--border); color: var(--muted);
+      padding: 0.12rem 0.38rem; margin-top: 0.35rem;
+    }
+
+    /* ── Book modal overlay ── */
+    .book-modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .book-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .book-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      position: relative;
+    }
+    .modal-cover {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(10%);
+      grid-row: 1 / 3;
+    }
+    .modal-cover-placeholder {
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      grid-row: 1 / 3;
+    }
+    .modal-body {
+      padding: 2rem 2rem 1.5rem;
+      display: flex; flex-direction: column;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none;
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--muted); cursor: none;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--accent); }
+    .modal-genre {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 0.5rem;
+    }
+    .modal-title {
+      font-family: var(--serif); font-size: 1.6rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.15; margin-bottom: 0.3rem;
+    }
+    .modal-author {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; color: var(--muted);
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .modal-rating-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .modal-stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 0.1em; }
+    .modal-rating-num {
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    }
+    .modal-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 1.2rem; }
+    .modal-comment-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .modal-comment {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(226,221,214,0.8);
+      flex: 1;
+    }
+    .modal-meta {
+      margin-top: 1.5rem;
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.1em; color: var(--muted);
+      text-transform: uppercase;
     }
 
     @media (max-width: 900px) {
       .random-grid { grid-template-columns: repeat(2, 1fr); }
       .r-block.wide { grid-column: span 2; }
       .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
+      .music-grid { grid-template-columns: 1fr; }
+      .book-modal { grid-template-columns: 140px 1fr; }
     }
-    @media (max-width: 580px) {
+    @media (max-width: 600px) {
       .random-grid { grid-template-columns: 1fr; }
       .r-block.wide { grid-column: span 1; }
       .wide-inner { grid-template-columns: 1fr; }
+      .books-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+      .book-modal { grid-template-columns: 1fr; }
+      .modal-cover, .modal-cover-placeholder { grid-row: auto; aspect-ratio: 16/9; }
     }
   </style>
 </head>
@@ -163,12 +347,38 @@
   </ul>
 </nav>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     BOOK MODAL — one modal, JS fills it dynamically per book click
+════════════════════════════════════════════════════════════════════ -->
+<div class="book-modal-overlay" id="bookModal" onclick="closeModal(event)">
+  <div class="book-modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕ close</button>
+    <!-- cover image or placeholder is injected here by JS -->
+    <div id="modal-cover-slot"></div>
+    <div class="modal-body">
+      <div class="modal-genre"    id="modal-genre"></div>
+      <div class="modal-title"    id="modal-title"></div>
+      <div class="modal-author"   id="modal-author"></div>
+      <div class="modal-rating-row">
+        <div class="modal-stars"      id="modal-stars"></div>
+        <div class="modal-rating-num" id="modal-rating-num"></div>
+      </div>
+      <hr class="modal-divider"/>
+      <div class="modal-comment-label">My thoughts</div>
+      <div class="modal-comment" id="modal-comment"></div>
+      <div class="modal-meta"    id="modal-meta"></div>
+    </div>
+  </div>
+</div>
+
 <div class="page-content">
   <div class="page-header">
     <div class="page-tag">05 — Miscellaneous</div>
     <h1 class="page-title">Random <em>Things</em></h1>
   </div>
 
+  <!-- ══ MISC GRID ═════════════════════════════════════════════════ -->
+  <div class="subsection-label">Bits &amp; pieces</div>
   <div class="random-grid">
 
     <!-- Quote -->
@@ -181,69 +391,6 @@
           <div class="r-quote-attr">— Dorothea Lange</div>
         </div>
         <p>I come back to this constantly. Photography changed the way I notice things — even when I'm not shooting.</p>
-      </div>
-    </div>
-
-    <!-- Music -->
-    <div class="r-block reveal">
-      <span class="r-icon">🎵</span>
-      <div class="r-title">Currently Listening</div>
-      <div class="r-body">
-        <div class="now-playing">
-          <div class="np-disc"></div>
-          <div class="np-info">
-            <div class="np-track">Ambient 1: Music for Airports</div>
-            <div class="np-artist">Brian Eno</div>
-          </div>
-        </div>
-        <ul class="r-list">
-          <li>Nils Frahm — All Melody</li>
-          <li>Arooj Aftab — Vulture Prince</li>
-          <li>Ryuichi Sakamoto — async</li>
-          <li>Arthur Russell — World of Echo</li>
-          <li>Talk Talk — Spirit of Eden</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Reading -->
-    <div class="r-block reveal">
-      <span class="r-icon">📚</span>
-      <div class="r-title">Reading List</div>
-      <div class="r-body">
-        <ul class="r-list">
-          <li>Camera Lucida — Roland Barthes</li>
-          <li>On Photography — Susan Sontag</li>
-          <li>Ways of Seeing — John Berger</li>
-          <li>The Ongoing Moment — Geoff Dyer</li>
-          <li>Understanding Comics — Scott McCloud</li>
-          <li>Regarding the Pain of Others — Sontag</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Places — wide block -->
-    <div class="r-block wide reveal">
-      <span class="r-icon">🌍</span>
-      <div class="r-title">Places I've Photographed</div>
-      <div class="r-body">
-        <div class="wide-inner">
-          <ul class="r-list">
-            <li>Tokyo, Japan — 2024</li>
-            <li>Kyoto, Japan — 2024</li>
-            <li>Lisbon, Portugal — 2023</li>
-            <li>Reykjavik, Iceland — 2022</li>
-            <li>Berlin, Germany — 2022</li>
-            <li>Łódź, Poland — always</li>
-          </ul>
-          <div>
-            <div class="places-map">
-              <div class="places-map-inner">🗺</div>
-              Add an embedded Google Map here.<br/>
-              Maps → Share → Embed
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -274,18 +421,41 @@
           <li>Drinks too much coffee ☕</li>
           <li>Learning Japanese very slowly</li>
           <li>Night owl. Always.</li>
-          <li>Has strong opinions about aspect ratios</li>
+          <li>Strong opinions about aspect ratios</li>
         </ul>
       </div>
     </div>
 
-    <!-- Interests tag cloud -->
+    <!-- Places — wide -->
+    <div class="r-block wide reveal">
+      <span class="r-icon">🌍</span>
+      <div class="r-title">Places I've Photographed</div>
+      <div class="r-body">
+        <div class="wide-inner">
+          <ul class="r-list">
+            <li>Tokyo, Japan — 2024</li>
+            <li>Kyoto, Japan — 2024</li>
+            <li>Lisbon, Portugal — 2023</li>
+            <li>Reykjavik, Iceland — 2022</li>
+            <li>Berlin, Germany — 2022</li>
+            <li>Łódź, Poland — always</li>
+          </ul>
+          <div class="places-map">
+            <div class="places-map-inner">🗺</div>
+            Paste a Google Maps embed here.<br/>
+            Maps → Share → Embed a map
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interests -->
     <div class="r-block reveal">
       <span class="r-icon">🏷</span>
       <div class="r-title">Interests</div>
       <div class="r-body">
         <p style="margin-bottom:1rem;">The things that keep me occupied when I'm not photographing.</p>
-        <div class="tag-cloud" data-hover>
+        <div class="tag-cloud">
           <span class="tag-pill">Analogue Photography</span>
           <span class="tag-pill">Film Theory</span>
           <span class="tag-pill">Ambient Music</span>
@@ -302,22 +472,6 @@
       </div>
     </div>
 
-    <!-- Inspirations -->
-    <div class="r-block reveal">
-      <span class="r-icon">✨</span>
-      <div class="r-title">Photographers I Admire</div>
-      <div class="r-body">
-        <ul class="r-list">
-          <li>Vivian Maier</li>
-          <li>Saul Leiter</li>
-          <li>Daido Moriyama</li>
-          <li>Diane Arbus</li>
-          <li>Fan Ho</li>
-          <li>Sebastião Salgado</li>
-        </ul>
-      </div>
-    </div>
-
     <!-- Currently working on -->
     <div class="r-block reveal">
       <span class="r-icon">🔧</span>
@@ -329,12 +483,250 @@
           <li>This website (obviously)</li>
           <li>Learning darkroom printing</li>
         </ul>
-        <p style="margin-top:1rem;font-size:0.82rem;color:var(--muted);">Last updated: April 2025</p>
+        <p style="margin-top:1rem;font-size:0.8rem;color:var(--muted);">Last updated: April 2025</p>
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- end .random-grid -->
+
+
+  <!-- ══ MUSIC / YOUTUBE ════════════════════════════════════════════
+    HOW TO ADD A SONG:
+    1. Go to YouTube → Share → Embed → copy the src URL (the part inside src="...")
+    2. Copy a .yt-card block below, paste it, fill in src, song name, artist
+  ══════════════════════════════════════════════════════════════════ -->
+  <div class="subsection-label">Currently listening</div>
+  <div class="music-grid">
+
+    <!--
+    ┌─────────── SONG TEMPLATE — copy & fill ───────────────────────┐
+
+    <div class="yt-card reveal">
+      <iframe class="yt-embed"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="SONG NAME"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <div class="yt-info">
+        <div class="yt-song">Song Name</div>
+        <div class="yt-artist">Artist · Album</div>
+      </div>
+    </div>
+
+    └───────────────────────────────────────────────────────────────┘
+    -->
+
+    <!-- Song 1 — replace VIDEO_ID with the id from the YouTube URL -->
+    <div class="yt-card reveal">
+      <iframe class="yt-embed"
+        src="https://www.youtube.com/embed/vNIVJAutPBE"
+        title="Brian Eno — 1/1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <div class="yt-info">
+        <div class="yt-song">1/1</div>
+        <div class="yt-artist">Brian Eno · Ambient 1: Music for Airports</div>
+      </div>
+    </div>
+
+    <!-- Song 2 -->
+    <div class="yt-card reveal">
+      <iframe class="yt-embed"
+        src="https://www.youtube.com/embed/iRgPo4XFwqI"
+        title="Nils Frahm — Says"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <div class="yt-info">
+        <div class="yt-song">Says</div>
+        <div class="yt-artist">Nils Frahm · Spaces</div>
+      </div>
+    </div>
+
+    <!-- Song 3 -->
+    <div class="yt-card reveal">
+      <iframe class="yt-embed"
+        src="https://www.youtube.com/embed/GFNobFSbGSA"
+        title="Ryuichi Sakamoto — Merry Christmas Mr. Lawrence"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <div class="yt-info">
+        <div class="yt-song">Merry Christmas Mr. Lawrence</div>
+        <div class="yt-artist">Ryuichi Sakamoto</div>
+      </div>
+    </div>
+
+    <!-- ▼▼▼ ADD MORE SONGS HERE ▼▼▼ -->
+
+  </div><!-- end .music-grid -->
+
+
+  <!-- ══ BOOKS ══════════════════════════════════════════════════════
+    HOW TO ADD A BOOK:
+    1. Copy a book-card block below (between the template comments)
+    2. Fill in: data-* attributes, cover image src, title, author, genre
+    3. The modal (popup) is filled automatically from the data-* values
+
+    COVER IMAGE OPTIONS:
+      A) Your own file:  src="photos/books/book-name.jpg"
+      B) From Google Books or Open Library — right-click cover → copy image
+      C) No image: remove the <img> tag entirely — emoji placeholder shows
+
+    RATING: 1–10, shows as filled stars out of 5 (e.g. 9 → ★★★★★, 7 → ★★★★☆)
+  ══════════════════════════════════════════════════════════════════ -->
+  <div class="subsection-label">Books I've read</div>
+  <div class="books-grid">
+
+    <!--
+    ┌─────────── BOOK TEMPLATE — copy & fill ───────────────────────┐
+
+    <div class="book-card reveal"
+      data-title="BOOK TITLE"
+      data-author="AUTHOR FULL NAME"
+      data-genre="GENRE"
+      data-rating="RATING"
+      data-year="YEAR READ"
+      data-comment="Write your thoughts here. As long as you like. What did it mean to you? Would you recommend it? Any favourite passages or ideas?"
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="photos/books/FILENAME.jpg" alt="BOOK TITLE"/>
+        <div class="book-rating">RATING</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">BOOK TITLE</div>
+      <div class="book-author">AUTHOR</div>
+      <span class="book-genre-tag">GENRE</span>
+    </div>
+
+    └───────────────────────────────────────────────────────────────┘
+    -->
+
+    <!-- Book 1 -->
+    <div class="book-card reveal"
+      data-title="Camera Lucida"
+      data-author="Roland Barthes"
+      data-genre="Photography Theory"
+      data-rating="9.5"
+      data-year="2023"
+      data-comment="One of the most personally affecting books I've ever read. Barthes wrote it after his mother's death, and it shows — the grief is woven into every page. His distinction between the studium and the punctum changed the way I look at photographs forever. The punctum: that tiny detail that pricks you, that wasn't intended but undoes you. I keep coming back to it."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80" alt="Camera Lucida"/>
+        <div class="book-rating">9.5</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">Camera Lucida</div>
+      <div class="book-author">Roland Barthes</div>
+      <span class="book-genre-tag">Photography</span>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="book-card reveal"
+      data-title="On Photography"
+      data-author="Susan Sontag"
+      data-genre="Photography Theory"
+      data-rating="8.8"
+      data-year="2022"
+      data-comment="Dense, brilliant, occasionally maddening. Sontag argues that photography has changed our relationship to the world — making everything potentially photographable and therefore making everything feel more distant, more consumable. I disagreed with parts of it, which is exactly what a good book should make you do. Essential reading for anyone serious about the medium."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80" alt="On Photography"/>
+        <div class="book-rating">8.8</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">On Photography</div>
+      <div class="book-author">Susan Sontag</div>
+      <span class="book-genre-tag">Photography</span>
+    </div>
+
+    <!-- Book 3 -->
+    <div class="book-card reveal"
+      data-title="Ways of Seeing"
+      data-author="John Berger"
+      data-genre="Art Theory"
+      data-rating="9.0"
+      data-year="2022"
+      data-comment="Short, sharp, and completely destabilising. Berger dismantles the idea that we look at art innocently — we always look from a position of class, gender, history. The chapter on oil painting and its relationship to property is something I think about constantly. The accompanying BBC series is also worth watching. Should be mandatory reading in every art school."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80" alt="Ways of Seeing"/>
+        <div class="book-rating">9.0</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">Ways of Seeing</div>
+      <div class="book-author">John Berger</div>
+      <span class="book-genre-tag">Art Theory</span>
+    </div>
+
+    <!-- Book 4 -->
+    <div class="book-card reveal"
+      data-title="The Ongoing Moment"
+      data-author="Geoff Dyer"
+      data-genre="Photography"
+      data-rating="8.5"
+      data-year="2024"
+      data-comment="Dyer traces recurring images across the history of photography — the blind beggar, the hat, the empty road — and shows how photographers unknowingly rhyme with each other across decades. Beautifully written, more literary than academic. Made me want to photograph everything and also do nothing but read for a week."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&q=80" alt="The Ongoing Moment"/>
+        <div class="book-rating">8.5</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">The Ongoing Moment</div>
+      <div class="book-author">Geoff Dyer</div>
+      <span class="book-genre-tag">Photography</span>
+    </div>
+
+    <!-- Book 5 -->
+    <div class="book-card reveal"
+      data-title="Understanding Comics"
+      data-author="Scott McCloud"
+      data-genre="Design Theory"
+      data-rating="9.2"
+      data-year="2021"
+      data-comment="Technically about comics, but really about visual storytelling, time, space, and the gap between images — which is to say, it's secretly one of the best books about photography I've read. The concept of 'closure' — what the reader fills in between panels — applies directly to editing a photo series. Wildly creative and endlessly re-readable."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&q=80" alt="Understanding Comics"/>
+        <div class="book-rating">9.2</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">Understanding Comics</div>
+      <div class="book-author">Scott McCloud</div>
+      <span class="book-genre-tag">Design</span>
+    </div>
+
+    <!-- Book 6 — no cover image example -->
+    <div class="book-card reveal"
+      data-title="Regarding the Pain of Others"
+      data-author="Susan Sontag"
+      data-genre="Photography Theory"
+      data-rating="8.2"
+      data-year="2024"
+      data-comment="A more restrained Sontag, circling back to questions she raised in On Photography — specifically about war photography and whether images of suffering make us more compassionate or just numb us. No easy answers. Feels more urgent now than when it was written. Best read slowly, with pauses to think."
+      onclick="openModal(this)">
+      <div class="book-cover">
+        <!-- No image — placeholder shows automatically -->
+        <div class="book-cover-placeholder">
+          <span class="bp-icon">📖</span>
+          <span class="bp-title">Regarding the Pain of Others</span>
+        </div>
+        <div class="book-rating">8.2</div>
+        <div class="book-hint"><span>Read review</span></div>
+      </div>
+      <div class="book-title">Regarding the Pain of Others</div>
+      <div class="book-author">Susan Sontag</div>
+      <span class="book-genre-tag">Photography</span>
+    </div>
+
+    <!-- ▼▼▼ ADD MORE BOOKS HERE ▼▼▼ -->
+
+  </div><!-- end .books-grid -->
+
+</div><!-- end .page-content -->
 
 <footer>
   <div class="footer-left">YourName ©&thinsp;2025</div>
@@ -342,5 +734,57 @@
 </footer>
 
 <script src="shared.js"></script>
+<script>
+  // Convert a 1–10 rating into filled/empty stars out of 5
+  function toStars(rating) {
+    const score = parseFloat(rating);
+    const filled = Math.round(score / 2); // 9.5 → 5, 7 → 4, etc.
+    return '★'.repeat(filled) + '☆'.repeat(5 - filled);
+  }
+
+  function openModal(card) {
+    const title   = card.dataset.title;
+    const author  = card.dataset.author;
+    const genre   = card.dataset.genre;
+    const rating  = card.dataset.rating;
+    const year    = card.dataset.year;
+    const comment = card.dataset.comment;
+
+    // Cover: use the card's img src if it exists, else placeholder
+    const cardImg = card.querySelector('img');
+    const slot = document.getElementById('modal-cover-slot');
+    if (cardImg) {
+      slot.innerHTML = `<img class="modal-cover" src="${cardImg.src}" alt="${title}"/>`;
+    } else {
+      slot.innerHTML = `<div class="modal-cover-placeholder">📖</div>`;
+    }
+
+    document.getElementById('modal-genre').textContent     = genre;
+    document.getElementById('modal-title').textContent     = title;
+    document.getElementById('modal-author').textContent    = author;
+    document.getElementById('modal-stars').textContent     = toStars(rating);
+    document.getElementById('modal-rating-num').textContent = rating + ' / 10';
+    document.getElementById('modal-comment').textContent   = comment;
+    document.getElementById('modal-meta').textContent      = 'Read in ' + year;
+
+    document.getElementById('bookModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    // Only close if clicking the overlay itself, not the modal box
+    if (e.target === document.getElementById('bookModal')) closeModalBtn();
+  }
+
+  function closeModalBtn() {
+    document.getElementById('bookModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModalBtn();
+  });
+</script>
 </body>
 </html>
