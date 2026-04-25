@@ -9,25 +9,19 @@
   <style>
     .page-content { padding-left: 3rem; padding-right: 3rem; }
 
-    /* Featured post */
+    /* ── Featured post ── */
     .featured {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
       border: 1px solid var(--border);
       margin-bottom: 1px;
       text-decoration: none;
       color: var(--text);
       overflow: hidden;
     }
-    .featured-img {
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      position: relative;
-    }
+    .featured-img { aspect-ratio: 4/3; overflow: hidden; }
     .featured-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover;
       filter: grayscale(25%);
       transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
     }
@@ -35,69 +29,45 @@
     .featured-body {
       padding: 3rem;
       display: flex; flex-direction: column; justify-content: flex-end;
-      background: var(--surface);
-      position: relative;
+      background: var(--surface); position: relative;
     }
     .featured-badge {
       position: absolute; top: 2.5rem; left: 3rem;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent);
       padding: 0.2rem 0.6rem;
     }
     .featured-date {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.8rem;
     }
     .featured-title {
-      font-family: var(--serif);
-      font-size: 2.4rem;
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      transition: color 0.2s;
+      font-family: var(--serif); font-size: 2.4rem;
+      font-style: italic; font-weight: 300; line-height: 1.1;
+      margin-bottom: 1rem; transition: color 0.2s;
     }
     .featured:hover .featured-title { color: var(--accent); }
-    .featured-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
+    .featured-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
     .read-link {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
     }
     .read-link::after { content: ' →'; }
 
-    /* Blog grid */
+    /* ── Blog grid ── */
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
+      gap: 1px; background: var(--border);
     }
     .blog-card {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--surface2);
-      text-decoration: none;
-      display: block;
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3; background: var(--surface2);
+      text-decoration: none; display: block;
     }
     .blog-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover;
       filter: grayscale(30%);
       transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
     }
@@ -106,41 +76,25 @@
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 55%);
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 1.8rem;
-      opacity: 0;
-      transition: opacity 0.35s;
+      padding: 1.8rem; opacity: 0; transition: opacity 0.35s;
     }
     .blog-card:hover .blog-card-overlay { opacity: 1; }
     .blog-card-date {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.4rem;
     }
-    .blog-card-title {
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      font-style: italic;
-      line-height: 1.2;
-    }
-    .blog-card-desc {
-      font-size: 0.8rem;
-      color: rgba(226,221,214,0.7);
-      margin-top: 0.4rem;
-      line-height: 1.5;
-    }
+    .blog-card-title { font-family: var(--serif); font-size: 1.35rem; font-style: italic; line-height: 1.2; }
+    .blog-card-desc { font-size: 0.8rem; color: rgba(226,221,214,0.7); margin-top: 0.4rem; line-height: 1.5; }
 
     @media (max-width: 768px) {
       .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
       .featured { grid-template-columns: 1fr; }
       .featured-img { aspect-ratio: 16/9; }
       .featured-body { padding: 2rem; }
+      .featured-badge { top: 1.5rem; left: 2rem; }
       .featured-title { font-size: 1.8rem; }
     }
-    @media (max-width: 500px) {
-      .blog-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 500px) { .blog-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -163,25 +117,102 @@
     <h1 class="page-title">The <em>Blog</em></h1>
   </div>
 
-  <!-- Featured post -->
-  <a href="#" class="featured reveal">
+<!-- =====================================================================
+  HOW TO ADD A NEW BLOG POST — 3 steps every time
+
+  STEP 1 → Duplicate  posts/post-template.html
+           Rename it  posts/your-post-name.html
+           Fill in your title, date, text and image filenames inside it
+
+  STEP 2 → Upload your photos to the  photos/  folder in your GitHub repo
+
+  STEP 3 → Update this file (blog.html):
+           a) Replace the FEATURED POST block below with your new post
+           b) Move the old featured post into the BLOG GRID as a regular card
+           c) Add the new grid card at the very TOP of the grid (newest first)
+
+  RULE: Featured post = always your latest post.
+        Grid          = all older posts, newest at the top-left.
+====================================================================== -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FEATURED POST
+     ─────────────────────────────────────────────────────────────────
+     Replace ALL 5 values below each time you publish a new post.
+     Then move the current featured post into the grid section.
+════════════════════════════════════════════════════════════════════════
+
+┌─── FEATURED TEMPLATE (replace the whole <a> block below) ──────────┐
+
+  <a href="posts/YOUR-FILENAME.html" class="featured reveal">
     <div class="featured-img">
-      <!-- Replace with your own image: src="photos/featured.jpg" -->
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80" alt="Golden Hour"/>
+      <img src="photos/YOUR-HERO-IMAGE.jpg" alt="DESCRIPTION"/>
+    </div>
+    <div class="featured-body">
+      <div class="featured-badge">Latest</div>
+      <div class="featured-date">Month Year</div>
+      <div class="featured-title">Your Post Title Here</div>
+      <div class="featured-desc">
+        A sentence or two describing the post. Where were you? What's the story?
+      </div>
+      <div class="read-link">Read more</div>
+    </div>
+  </a>
+
+└────────────────────────────────────────────────────────────────────┘ -->
+
+  <a href="posts/mountains.html" class="featured reveal">
+    <div class="featured-img">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80" alt="Golden Hour in the Mountains"/>
     </div>
     <div class="featured-body">
       <div class="featured-badge">Latest</div>
       <div class="featured-date">March 2025</div>
       <div class="featured-title">Golden Hour in the Mountains</div>
-      <div class="featured-desc">Chasing light at 2,000 metres with nothing but a 35mm lens, a thermos of bad coffee, and the vague hope that clouds would cooperate.</div>
+      <div class="featured-desc">
+        Chasing light at 2,000 metres with nothing but a 35mm lens, a thermos of bad coffee,
+        and the vague hope that clouds would cooperate.
+      </div>
       <div class="read-link">Read more</div>
     </div>
   </a>
 
-  <!-- Blog grid -->
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BLOG GRID  —  all older posts
+     ─────────────────────────────────────────────────────────────────
+     When you publish a new post:
+       1. Your new post becomes the featured post above
+       2. The old featured post moves here as a grid card
+       3. Paste the new grid card at the TOP (marked below)
+════════════════════════════════════════════════════════════════════════
+
+┌─── GRID CARD TEMPLATE (copy this, paste at the TOP of the grid) ───┐
+
+  <a href="posts/YOUR-FILENAME.html" class="blog-card reveal">
+    <img src="photos/YOUR-IMAGE.jpg" alt="DESCRIPTION"/>
+    <div class="blog-card-overlay">
+      <div class="blog-card-date">Month Year</div>
+      <div class="blog-card-title">Your Post Title</div>
+      <div class="blog-card-desc">One teaser sentence shown on hover.</div>
+    </div>
+  </a>
+
+  FILL IN:
+    posts/YOUR-FILENAME.html  → e.g. posts/paris.html
+    photos/YOUR-IMAGE.jpg     → a landscape crop from the post works best
+    Month Year                → e.g. April 2025
+    Your Post Title           → same title as in your post file
+    One teaser sentence       → short hook, shown on hover
+
+└────────────────────────────────────────────────────────────────────┘ -->
+
   <div class="blog-grid" style="margin-top:1px;">
 
-    <a href="#" class="blog-card reveal">
+    <!-- ▼▼▼ PASTE NEW GRID CARDS HERE — newest post at the top ▼▼▼ -->
+
+    <a href="posts/tokyo.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800&q=80" alt="Tokyo After Midnight"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">January 2025</div>
@@ -190,7 +221,7 @@
       </div>
     </a>
 
-    <a href="#" class="blog-card reveal">
+    <a href="posts/strangers.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80" alt="Portraits of Strangers"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">November 2024</div>
@@ -199,7 +230,7 @@
       </div>
     </a>
 
-    <a href="#" class="blog-card reveal">
+    <a href="posts/film.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Film is Not Dead"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">September 2024</div>
@@ -208,16 +239,7 @@
       </div>
     </a>
 
-    <a href="posts/sofia.html" class="blog-card reveal">
-  <img src="../photos/paris-hero.jpg" alt="Paris"/>
-  <div class="blog-card-overlay">
-    <div class="blog-card-date">April 2025</div>
-    <div class="blog-card-title">Paris in the Rain</div>
-    <div class="blog-card-desc">One week, two cameras, and an obsession with wet cobblestones.</div>
-  </div>
-      </a>
-
-    <a href="#" class="blog-card reveal">
+    <a href="posts/winter.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1491555103944-7c647fd857e6?w=800&q=80" alt="Winter Light"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">December 2024</div>
@@ -226,7 +248,7 @@
       </div>
     </a>
 
-    <a href="#" class="blog-card reveal">
+    <a href="posts/road.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="On the Road Again"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">August 2024</div>
@@ -235,7 +257,7 @@
       </div>
     </a>
 
-    <a href="#" class="blog-card reveal">
+    <a href="posts/coastlines.html" class="blog-card reveal">
       <img src="https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=800&q=80" alt="Coastlines"/>
       <div class="blog-card-overlay">
         <div class="blog-card-date">June 2024</div>
@@ -244,14 +266,15 @@
       </div>
     </a>
 
-  </div>
-</div>
+    <!-- ▲▲▲ older posts above — newest always at the top ▲▲▲ -->
+
+  </div><!-- end .blog-grid -->
+</div><!-- end .page-content -->
 
 <footer>
   <div class="footer-left">YourName ©&thinsp;2025</div>
   <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
 </footer>
-
 <script src="shared.js"></script>
 </body>
 </html>
