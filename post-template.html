@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+    HOW TO USE THIS TEMPLATE
+    ─────────────────────────────────────────────────────────────────
+    1. Duplicate this file, rename it:  posts/your-post-name.html
+       Use lowercase, hyphens only:     posts/paris-in-the-rain.html
+
+    2. Find every line that says  ← CHANGE THIS  and update it
+
+    3. Add your photos using the layouts below:
+         .photo       → one full-width photo
+         .photo.duo   → two photos side by side
+         .photo.trio  → three photos in a row
+
+    4. Upload the file + your photos to GitHub
+    5. Add a card in blog.html pointing to this file
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <title>POST TITLE HERE — YourName</title>  <!-- ← CHANGE THIS -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    /* ── Post layout ── */
+    .post-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 7rem;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* Hero image */
+    .post-hero {
+      width: 100%; aspect-ratio: 3/2;
+      object-fit: cover; display: block;
+      margin-bottom: 2.5rem;
+      filter: grayscale(15%);
+    }
+
+    /* Meta line */
+    .post-meta {
+      font-family: var(--mono); font-size: 0.63rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1rem;
+    }
+    .post-meta span { color: var(--border); margin: 0 0.4rem; }
+
+    /* Title */
+    .post-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.1; margin-bottom: 2.5rem;
+    }
+
+    /* Body text */
+    .post-body { font-size: 1.05rem; line-height: 1.95; color: rgba(226,221,214,0.85); }
+    .post-body p { margin-bottom: 1.7rem; }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    /* ── Photo layouts ── */
+    /* Full width */
+    .photo { width: 100%; margin: 2.8rem 0; }
+    .photo img {
+      width: 100%; display: block; object-fit: cover;
+      filter: grayscale(15%);
+      transition: filter 0.4s;
+    }
+    .photo img:hover { filter: grayscale(0%); }
+    .photo figcaption {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.1em; color: var(--muted);
+      padding-top: 0.6rem; line-height: 1.5;
+    }
+
+    /* Two side by side */
+    .photo.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .photo.duo figcaption { grid-column: span 2; }
+
+    /* Three in a row */
+    .photo.trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+    .photo.trio figcaption { grid-column: span 3; }
+
+    /* Wide + narrow side by side (2/3 + 1/3) */
+    .photo.split { display: grid; grid-template-columns: 2fr 1fr; gap: 4px; }
+    .photo.split figcaption { grid-column: span 2; }
+
+    /* ── Pull quote ── */
+    .pull-quote {
+      font-family: var(--serif); font-size: 1.5rem;
+      font-style: italic; line-height: 1.55;
+      color: var(--accent);
+      border-left: 2px solid var(--accent);
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      margin: 2.8rem 0;
+    }
+
+    /* ── Post navigation (prev / next) ── */
+    .post-nav {
+      display: flex; justify-content: space-between;
+      margin-top: 5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .post-nav a {
+      font-family: var(--mono); font-size: 0.63rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .post-nav a:hover { color: var(--accent); }
+    .post-nav .prev::before { content: '← '; }
+    .post-nav .next::after  { content: ' →'; }
+
+    @media (max-width: 600px) {
+      .post-wrap { padding: 0 1.2rem 5rem; }
+      .photo.duo, .photo.trio, .photo.split { grid-template-columns: 1fr; }
+      .photo.duo figcaption,
+      .photo.trio figcaption,
+      .photo.split figcaption { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">YourName</a>
+  <ul class="nav-links">
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../cv.html">CV</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../movies.html">Movies</a></li>
+    <li><a href="../random.html">Random</a></li>
+  </ul>
+</nav>
+
+<div class="page-content post-wrap">
+
+  <a href="../blog.html" class="back-link">← Back to Blog</a>
+
+  <!-- ── Hero image ────────────────────────────────────────────────
+       Replace with your own:  src="../photos/your-hero-image.jpg"
+  ──────────────────────────────────────────────────────────────── -->
+  <img class="post-hero"
+       src="../photos/YOUR-HERO-IMAGE.jpg"     <!-- ← CHANGE THIS -->
+       alt="SHORT DESCRIPTION OF THE IMAGE"/>  <!-- ← CHANGE THIS -->
+
+  <!-- ── Meta line ─────────────────────────────────────────────────
+       Format:  Month Year  ·  Location  ·  Camera used
+  ──────────────────────────────────────────────────────────────── -->
+  <div class="post-meta">
+    Month Year           <!-- ← CHANGE THIS -->
+    <span>·</span>
+    City, Country        <!-- ← CHANGE THIS -->
+    <span>·</span>
+    Camera Name          <!-- ← CHANGE THIS -->
+  </div>
+
+  <!-- ── Post title ────────────────────────────────────────────── -->
+  <h1 class="post-title">Your Post Title Here</h1>  <!-- ← CHANGE THIS -->
+
+  <!-- ══════════════════════════════════════════════════════════════
+       POST BODY
+       ──────────────────────────────────────────────────────────────
+       Write your text in <p> tags.
+       Drop in photo blocks wherever you want between paragraphs.
+
+       PHOTO LAYOUT OPTIONS — examples below:
+
+         Full width:          <figure class="photo">
+         Two side by side:    <figure class="photo duo">
+         Three in a row:      <figure class="photo trio">
+         Wide + narrow:       <figure class="photo split">
+
+       Inside each figure:
+         <img src="../photos/FILENAME.jpg" alt="DESCRIPTION"/>
+         <figcaption>Caption text here</figcaption>   (optional)
+  ════════════════════════════════════════════════════════════════ -->
+  <div class="post-body">
+
+    <p>
+      <!-- ← CHANGE THIS: opening paragraph -->
+      Write your opening paragraph here. Set the scene — where are you,
+      what time of day is it, what were you looking for when you arrived?
+    </p>
+
+    <!-- Full-width photo -->
+    <figure class="photo">
+      <img src="../photos/YOUR-PHOTO-1.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <figcaption>Location or context · Camera · Film stock</figcaption>  <!-- ← CHANGE THIS (or delete line) -->
+    </figure>
+
+    <p>
+      <!-- ← CHANGE THIS -->
+      Second paragraph. What happened next? What did you notice that you
+      weren't expecting? This is where the story develops.
+    </p>
+
+    <!-- Two photos side by side -->
+    <figure class="photo duo">
+      <img src="../photos/YOUR-PHOTO-2.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <img src="../photos/YOUR-PHOTO-3.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <figcaption>Optional caption for both images</figcaption>  <!-- ← CHANGE THIS (or delete line) -->
+    </figure>
+
+    <p>
+      <!-- ← CHANGE THIS -->
+      Third paragraph. Go deeper — what does this place or moment mean to you?
+      Why did you photograph it the way you did?
+    </p>
+
+    <!-- Pull quote — a line that stands out from your writing -->
+    <div class="pull-quote">
+      Write a line here that captures the feeling of the shoot.  <!-- ← CHANGE THIS -->
+    </div>
+
+    <p>
+      <!-- ← CHANGE THIS -->
+      Fourth paragraph. Keep going. More observations, more story.
+      What are you thinking about while you're shooting?
+    </p>
+
+    <!-- Three photos in a row -->
+    <figure class="photo trio">
+      <img src="../photos/YOUR-PHOTO-4.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <img src="../photos/YOUR-PHOTO-5.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <img src="../photos/YOUR-PHOTO-6.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <!-- no caption needed for trio, but you can add one -->
+    </figure>
+
+    <p>
+      <!-- ← CHANGE THIS -->
+      Closing paragraph. Reflect — what did you learn, what would you do
+      differently, what will you remember about this shoot?
+    </p>
+
+    <!-- Final full-width image to close the post -->
+    <figure class="photo">
+      <img src="../photos/YOUR-PHOTO-FINAL.jpg" alt="DESCRIPTION"/>  <!-- ← CHANGE THIS -->
+      <figcaption>Final image caption</figcaption>  <!-- ← CHANGE THIS (or delete line) -->
+    </figure>
+
+  </div><!-- end .post-body -->
+
+
+  <!-- ── Prev / Next navigation ────────────────────────────────────
+       Link to the posts just before and after this one.
+       Delete the link you don't need (e.g. no "next" on your latest post).
+  ──────────────────────────────────────────────────────────────── -->
+  <nav class="post-nav">
+    <a href="PREVIOUS-POST.html" class="prev">Previous Post Title</a>  <!-- ← CHANGE THIS -->
+    <a href="NEXT-POST.html"     class="next">Next Post Title</a>       <!-- ← CHANGE THIS -->
+  </nav>
+
+</div><!-- end .post-wrap -->
+
+<footer>
+  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
+</footer>
+
+<script src="../shared.js"></script>
+</body>
+</html>
