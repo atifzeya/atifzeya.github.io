@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CV — YourName</title>
+  <title>CV — Atif Zeya</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <style>
@@ -11,11 +11,11 @@
 
     .cv-layout {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 270px 1fr;
       gap: 4rem;
     }
 
-    /* Sidebar */
+    /* ── Sidebar ── */
     .cv-avatar {
       width: 110px; height: 110px;
       border-radius: 50%;
@@ -24,82 +24,112 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 2.4rem;
       margin-bottom: 1.5rem;
-      /* To use a real photo, replace the div with:
-         <img src="photos/avatar.jpg" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid var(--border);"> */
     }
     .cv-name { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 0.25rem; }
     .cv-role {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); line-height: 1.6;
     }
     .cv-divider { border: none; border-top: 1px solid var(--border); margin: 1.4rem 0; }
-    .cv-info-row { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .cv-info-row {
+      font-size: 0.83rem; color: var(--muted);
+      margin-bottom: 0.45rem;
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
     .cv-info-row span { color: var(--text); }
+    .cv-info-row a { color: var(--accent2); text-decoration: none; }
+    .cv-info-row a:hover { text-decoration: underline; }
     .cv-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.7rem;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.7rem;
     }
     .cv-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .cv-tag {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      padding: 0.22rem 0.55rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; padding: 0.22rem 0.55rem;
+      border: 1px solid var(--border); color: var(--muted);
     }
-    .cv-lang-row { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.35rem; }
-    .cv-lang-dots { color: var(--accent); }
+    .cv-cert {
+      font-size: 0.82rem; color: rgba(226,221,214,0.65);
+      padding: 0.45rem 0; border-bottom: 1px solid var(--border);
+      line-height: 1.4;
+    }
+    .cv-cert:last-child { border-bottom: none; }
+    .cv-cert-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.1em; color: var(--accent);
+      text-transform: uppercase; margin-bottom: 0.1rem;
+    }
 
-    /* Main */
+    /* ── Main column ── */
     .cv-section { margin-bottom: 3rem; }
     .cv-section-label {
-      font-family: var(--mono);
-      font-size: 0.63rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent2);
+      font-family: var(--mono); font-size: 0.63rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem; margin-bottom: 1.5rem;
     }
-    .cv-about {
-      font-size: 0.93rem;
-      line-height: 1.85;
-      color: rgba(226,221,214,0.8);
+    .cv-about { font-size: 0.93rem; line-height: 1.85; color: rgba(226,221,214,0.8); }
+
+    .cv-entry { margin-bottom: 2.2rem; }
+    .cv-entry-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 1rem;
     }
-    .cv-entry { margin-bottom: 2rem; }
-    .cv-entry-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-    .cv-entry-title { font-family: var(--serif); font-size: 1.18rem; }
+    .cv-entry-title { font-family: var(--serif); font-size: 1.18rem; line-height: 1.2; }
     .cv-entry-period {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      white-space: nowrap;
-      flex-shrink: 0;
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; color: var(--accent);
+      white-space: nowrap; flex-shrink: 0;
     }
-    .cv-entry-org { font-size: 0.8rem; color: var(--muted); margin: 0.2rem 0 0.5rem; }
-    .cv-entry-desc { font-size: 0.86rem; color: rgba(226,221,214,0.65); line-height: 1.65; }
+    .cv-entry-org { font-size: 0.8rem; color: var(--muted); margin: 0.2rem 0 0.3rem; }
+    .cv-entry-sub {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; color: var(--accent2);
+      text-transform: uppercase; margin-bottom: 0.7rem;
+    }
+    .cv-entry-desc {
+      font-size: 0.86rem; color: rgba(226,221,214,0.65); line-height: 1.65;
+    }
+
+    /* Bullet list inside entry */
+    .cv-bullets { list-style: none; margin-top: 0.4rem; }
+    .cv-bullets li {
+      font-size: 0.85rem; color: rgba(226,221,214,0.65);
+      line-height: 1.65; padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(36,36,36,0.7);
+      display: flex; align-items: flex-start; gap: 0.65rem;
+    }
+    .cv-bullets li:last-child { border-bottom: none; }
+    .cv-bullets li::before {
+      content: '→'; color: var(--accent);
+      font-size: 0.65rem; margin-top: 0.25rem; flex-shrink: 0;
+    }
+
+    /* Skills table */
+    .cv-skills-table { width: 100%; border-collapse: collapse; }
+    .cv-skills-table tr { border-bottom: 1px solid var(--border); }
+    .cv-skills-table tr:last-child { border-bottom: none; }
+    .cv-skills-table td {
+      font-size: 0.84rem; padding: 0.65rem 0.5rem;
+      vertical-align: top; color: rgba(226,221,214,0.7); line-height: 1.5;
+    }
+    .cv-skills-table td:first-child {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); width: 155px; padding-right: 1.2rem;
+      white-space: nowrap;
+    }
 
     .cv-download {
       display: inline-flex; align-items: center; gap: 0.7rem;
       margin-top: 0.5rem;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
+      font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: 0.75rem 1.5rem; text-decoration: none;
       transition: background 0.2s, color 0.2s;
     }
     .cv-download:hover { background: var(--accent); color: var(--bg); }
@@ -108,13 +138,18 @@
       .cv-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .page-content { padding-left: 1.4rem; padding-right: 1.4rem; }
     }
+    @media (max-width: 500px) {
+      .cv-skills-table, .cv-skills-table tbody,
+      .cv-skills-table tr, .cv-skills-table td { display: block; width: 100%; }
+      .cv-skills-table td:first-child { margin-bottom: 0.2rem; white-space: normal; }
+    }
   </style>
 </head>
 <body>
 <div id="cursor"></div>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">YourName</a>
+  <a href="index.html" class="nav-logo">Atif Zeya</a>
   <ul class="nav-links">
     <li><a href="blog.html">Blog</a></li>
     <li><a href="cv.html">CV</a></li>
@@ -131,101 +166,200 @@
   </div>
 
   <div class="cv-layout">
-    <!-- Sidebar -->
+
+    <!-- ══ SIDEBAR ══════════════════════════════════════ -->
     <div class="reveal">
-      <div class="cv-avatar">📷</div>
-      <div class="cv-name">Your Name</div>
-      <div class="cv-role">Photographer &amp; Designer</div>
+
+      <div class="cv-avatar">👤</div>
+      <!-- To use your own photo, replace the div above with:
+      <img src="photos/avatar.jpg"
+           style="width:110px;height:110px;border-radius:50%;
+                  object-fit:cover;border:2px solid var(--border);
+                  margin-bottom:1.5rem;display:block;"/> -->
+
+      <div class="cv-name">Atif Zeya</div>
+      <div class="cv-role">Quantitative Risk Analyst<br/>Associate Director · FRM Certified</div>
+
       <hr class="cv-divider"/>
-      <div class="cv-info-row">📍 <span>Łódź, Poland</span></div>
-      <div class="cv-info-row">📧 <span>you@email.com</span></div>
-      <div class="cv-info-row">🌐 <span>yourusername.github.io</span></div>
-      <div class="cv-info-row">📱 <span>+48 000 000 000</span></div>
+
+      <div class="cv-info-row">📍 <span>Krakow, Poland</span></div>
+      <div class="cv-info-row">📧 <a href="mailto:atif.zeya2011@gmail.com">atif.zeya2011@gmail.com</a></div>
+      <div class="cv-info-row">📱 <span>+48 729 448 574</span></div>
+      <div class="cv-info-row">💼 <a href="https://linkedin.com/in/atif-zeya" target="_blank">linkedin.com/in/atif-zeya</a></div>
+
       <hr class="cv-divider"/>
-      <div class="cv-label">Skills</div>
+      <div class="cv-label">Core Skills</div>
       <div class="cv-skills">
-        <span class="cv-tag">Photography</span>
-        <span class="cv-tag">Lightroom</span>
-        <span class="cv-tag">Photoshop</span>
-        <span class="cv-tag">Film</span>
-        <span class="cv-tag">HTML/CSS</span>
-        <span class="cv-tag">Writing</span>
-        <span class="cv-tag">Figma</span>
-        <span class="cv-tag">Video</span>
+        <span class="cv-tag">Python</span>
+        <span class="cv-tag">R</span>
+        <span class="cv-tag">SQL</span>
+        <span class="cv-tag">Tableau</span>
+        <span class="cv-tag">IRRBB</span>
+        <span class="cv-tag">Liquidity Risk</span>
+        <span class="cv-tag">Credit Risk</span>
+        <span class="cv-tag">Model Validation</span>
+        <span class="cv-tag">Machine Learning</span>
+        <span class="cv-tag">Stress Testing</span>
+        <span class="cv-tag">FINMA</span>
+        <span class="cv-tag">BCBS</span>
+        <span class="cv-tag">SR 11-7</span>
+        <span class="cv-tag">scikit-learn</span>
+        <span class="cv-tag">pandas</span>
+        <span class="cv-tag">statsmodels</span>
       </div>
+
       <hr class="cv-divider"/>
-      <div class="cv-label">Languages</div>
-      <div class="cv-lang-row">English <span class="cv-lang-dots">●●●●●</span></div>
-      <div class="cv-lang-row">Polish <span class="cv-lang-dots">●●●●●</span></div>
-      <div class="cv-lang-row">Spanish <span class="cv-lang-dots">●●●○○</span></div>
-    </div>
-
-    <!-- Main -->
-    <div>
-      <div class="cv-section reveal">
-        <div class="cv-section-label">About</div>
-        <p class="cv-about">I'm a photographer and visual storyteller with a passion for capturing authentic moments. With a background in both digital and analogue photography, I bring a thoughtful eye to every project. When I'm not behind a camera, I write about visual culture, watch films, or explore new places.</p>
+      <div class="cv-label">Certifications</div>
+      <div class="cv-cert">
+        <div class="cv-cert-label">FRM</div>
+        Financial Risk Manager — GARP
+      </div>
+      <div class="cv-cert">
+        <div class="cv-cert-label">ML</div>
+        Machine Learning — NPTEL
+      </div>
+      <div class="cv-cert">
+        <div class="cv-cert-label">Python</div>
+        Credit Risk Modelling in Python — Udemy
       </div>
 
+    </div><!-- end sidebar -->
+
+
+    <!-- ══ MAIN COLUMN ══════════════════════════════════ -->
+    <div>
+
+      <!-- Profile -->
+      <div class="cv-section reveal">
+        <div class="cv-section-label">Profile</div>
+        <p class="cv-about">
+          Results-driven Quantitative Risk Analyst with 6+ years of experience spanning model validation,
+          credit risk, liquidity risk, and data science. Currently at UBS (Associate Director level),
+          leading validation of IRRBB and liquidity risk models in compliance with FINMA, BCBS, and SR 11-7
+          regulatory frameworks. Combines deep domain expertise in financial risk with strong data science
+          skills (Python, R, SQL, Tableau). FRM certified with a proven track record of delivering
+          high-impact model reviews, mentoring junior analysts, and supporting cross-functional projects
+          including the Credit Suisse merger.
+        </p>
+      </div>
+
+      <!-- Experience -->
       <div class="cv-section reveal">
         <div class="cv-section-label">Experience</div>
-        <div class="cv-entry">
-          <div class="cv-entry-header">
-            <div class="cv-entry-title">Freelance Photographer</div>
-            <div class="cv-entry-period">2021 — Present</div>
-          </div>
-          <div class="cv-entry-org">Self-employed</div>
-          <div class="cv-entry-desc">Commercial, portrait, and editorial photography. Clients include local businesses, magazines, and private commissions. Full post-production pipeline managed independently.</div>
-        </div>
-        <div class="cv-entry">
-          <div class="cv-entry-header">
-            <div class="cv-entry-title">Visual Content Creator</div>
-            <div class="cv-entry-period">2019 — 2021</div>
-          </div>
-          <div class="cv-entry-org">Company Name, City</div>
-          <div class="cv-entry-desc">Produced photo and video content for social media reaching 200k+ followers. Managed full post-production pipeline and brand visual identity.</div>
-        </div>
-        <div class="cv-entry">
-          <div class="cv-entry-header">
-            <div class="cv-entry-title">Photography Assistant</div>
-            <div class="cv-entry-period">2017 — 2019</div>
-          </div>
-          <div class="cv-entry-org">Studio Name, City</div>
-          <div class="cv-entry-desc">Assisted lead photographers on commercial and editorial shoots. Managed equipment, lighting setups, and client communication.</div>
-        </div>
-      </div>
 
+        <!-- UBS -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Quantitative Risk Analyst — Associate Director</div>
+            <div class="cv-entry-period">Dec 2021 — Present</div>
+          </div>
+          <div class="cv-entry-org">UBS · Mumbai → Krakow, Poland (relocating Jul 2025)</div>
+          <div class="cv-entry-sub">Treasury Models Validation · IRRBB &amp; Liquidity Risk</div>
+          <ul class="cv-bullets">
+            <li>Validated statistical models for internal/external stress testing and regulatory compliance (FINMA LPA, ILAAP, ICAAP, ECB Pillar 2) against FINMA, BCBS, and SR 11-7 guidelines.</li>
+            <li>Lead validator for the Simcast project — overseeing the bank's NII forecasting migration from QRM to a cloud-native internal architecture, a key digital transformation initiative.</li>
+            <li>Independently recalibrated Lombard loan models during the Credit Suisse merger, providing rigorous challenge to 1st Line of Defense proposals and ensuring model integrity post-integration.</li>
+            <li>Reviewed and strengthened ongoing model performance monitoring plans across the model portfolio, ensuring models remain fit for purpose under regulatory and internal standards.</li>
+            <li>Mentored and upskilled junior analysts; directly managed two interns, fostering a culture of quality and continuous improvement within the validation team.</li>
+            <li>Completed a 2-month rotation in Counterparty Credit Risk, validating the Exchange-Traded Derivatives framework model for Expected Positive Exposure (EPE) quantification.</li>
+            <li>Key models validated: Net Interest Income (NII), FINMA LCR &amp; NSFR, Lombard Lending under Stress, Pension Fixed Income Sensitivity, Global Client Rate, TBTF Institution-Specific Requirements, BCBS 248 Intraday Liquidity.</li>
+          </ul>
+        </div>
+
+        <!-- ISB -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Research Associate</div>
+            <div class="cv-entry-period">Jul 2020 — Sep 2021</div>
+          </div>
+          <div class="cv-entry-org">Bharti Institute of Public Policy, ISB · Mohali, India</div>
+          <ul class="cv-bullets">
+            <li>Led quantitative research on crop substitution policy using fixed-effects panel models to assess climate variability impacts on crop yields, contributing to national food security and water sustainability debates.</li>
+            <li>Conducted policy workshops and authored research insights published via the India Data Portal.</li>
+          </ul>
+        </div>
+
+        <!-- RBL Bank -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Data Scientist</div>
+            <div class="cv-entry-period">Jun 2018 — Nov 2019</div>
+          </div>
+          <div class="cv-entry-org">Ratnakar Bank Limited (RBL Bank) · Mumbai, India</div>
+          <ul class="cv-bullets">
+            <li>Built propensity models (Logistic Regression, Random Forest) for cross-sell of Personal Loans, FDs, and RDs; models were actively deployed by the marketing team to drive targeted campaigns.</li>
+            <li>Designed and deployed a firm-wide real-time transaction monitoring dashboard in Tableau, enabling branch-level visibility across 20+ branches during the rollout phase.</li>
+            <li>Developed a rule-based fraud detection model to flag suspicious transactions, reducing false positives and enabling the centralised fraud team to focus on high-risk cases.</li>
+          </ul>
+        </div>
+
+      </div><!-- end experience -->
+
+      <!-- Education -->
       <div class="cv-section reveal">
         <div class="cv-section-label">Education</div>
+
         <div class="cv-entry">
           <div class="cv-entry-header">
-            <div class="cv-entry-title">BA Photography &amp; Visual Arts</div>
-            <div class="cv-entry-period">2014 — 2018</div>
+            <div class="cv-entry-title">M.S. in Quantitative Economics</div>
+            <div class="cv-entry-period">2016 — 2018</div>
           </div>
-          <div class="cv-entry-org">University Name, City</div>
-          <div class="cv-entry-desc">Graduated with honours. Thesis on documentary photography and urban identity. Exchange semester at a partner institution in Berlin.</div>
+          <div class="cv-entry-org">Indian Statistical Institute, New Delhi</div>
+          <div class="cv-entry-desc">Full-tuition scholarship &amp; stipend (Government of India). Relevant coursework: Financial Econometrics, Time Series Analysis, Statistics, R.</div>
         </div>
-      </div>
 
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">B.Sc. in Economics (Honours)</div>
+            <div class="cv-entry-period">2013 — 2016</div>
+          </div>
+          <div class="cv-entry-org">Scottish Church College, University of Calcutta, Kolkata</div>
+        </div>
+
+      </div><!-- end education -->
+
+      <!-- Technical & Functional Skills -->
       <div class="cv-section reveal">
-        <div class="cv-section-label">Awards &amp; Recognition</div>
-        <div class="cv-entry">
-          <div class="cv-entry-header">
-            <div class="cv-entry-title">Award or Exhibition Name</div>
-            <div class="cv-entry-period">2023</div>
-          </div>
-          <div class="cv-entry-org">Organising body</div>
-          <div class="cv-entry-desc">Brief description of the award or what was exhibited.</div>
-        </div>
+        <div class="cv-section-label">Technical &amp; Functional Skills</div>
+        <table class="cv-skills-table">
+          <tbody>
+            <tr>
+              <td>Risk Domains</td>
+              <td>IRRBB, Liquidity Risk (LCR/NSFR), Credit Risk, Counterparty Credit Risk, Market Risk</td>
+            </tr>
+            <tr>
+              <td>Regulatory</td>
+              <td>FINMA (LPA, ILAAP), BCBS 239/248, SR 11-7, ECB Pillar 2, ICAAP</td>
+            </tr>
+            <tr>
+              <td>Model Validation</td>
+              <td>Conceptual soundness review, benchmarking, back-testing, performance monitoring, sensitivity analysis</td>
+            </tr>
+            <tr>
+              <td>Programming</td>
+              <td>Python (scikit-learn, pandas, statsmodels), R, SQL</td>
+            </tr>
+            <tr>
+              <td>Data &amp; Analytics</td>
+              <td>Tableau, MS Excel (advanced), statistical modelling, machine learning</td>
+            </tr>
+            <tr>
+              <td>Soft Skills</td>
+              <td>Stakeholder management, technical writing, mentoring, cross-functional collaboration</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <a href="cv.pdf" class="cv-download reveal" download>↓ Download PDF version</a>
-    </div>
-  </div>
-</div>
+      <!-- Download -->
+      <a href="Atif_Zeya_CV_new.docx" class="cv-download reveal" download>↓ Download CV (Word)</a>
+
+    </div><!-- end main column -->
+  </div><!-- end cv-layout -->
+</div><!-- end page-content -->
 
 <footer>
-  <div class="footer-left">YourName ©&thinsp;2025</div>
+  <div class="footer-left">Atif Zeya ©&thinsp;2025</div>
   <div class="footer-right">Built with HTML · Hosted free on GitHub Pages</div>
 </footer>
 
