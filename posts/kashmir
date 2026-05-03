@@ -61,7 +61,7 @@
   <a href="../blog.html" class="back-link">← Back to Blog</a>
 
   <!-- CHANGE THIS: hero image -->
-  <img class="post-hero" src="../photos/kashmir_photo/kashmir4.jpeg" alt="Description"/>
+  <img class="post-hero" src="photos/kashmir_photo/kashmir4.jpeg" alt="Description"/>
 
   <!-- CHANGE THIS: date, location, camera -->
   <div class="post-meta">Month Year &nbsp;·&nbsp; City, Country &nbsp;·&nbsp; Camera Name</div>
@@ -76,7 +76,7 @@
 
     <!-- Full-width photo with caption -->
     <figure class="photo">
-      <img src="../photos/kashmir_photo/kashmir9.jpeg" alt="Description"/>
+      <img src="photos/kashmir_photo/kashmir9.jpeg" alt="Description"/>
       <figcaption>Location or context · Camera · Film</figcaption>
     </figure>
 
@@ -84,8 +84,8 @@
 
     <!-- Two photos side by side -->
     <figure class="photo duo">
-      <img src="../photos/kashmir_photo/kashmir7.jpeg" alt="Description"/>
-      <img src="../photos/kashmir_photo/kashmir8.jpeg" alt="Description"/>
+      <img src="photos/kashmir_photo/kashmir7.jpeg" alt="Description"/>
+      <img src="photos/kashmir_photo/kashmir8.jpeg" alt="Description"/>
       <figcaption>Optional caption for both</figcaption>
     </figure>
 
@@ -98,16 +98,16 @@
 
     <!-- Three photos in a row -->
     <figure class="photo trio">
-      <img src="../photos/kashmir_photo/kashmir2.jpeg" alt=""/>
-      <img src="../photos/kashmir_photo/kashmir10.jpeg" alt=""/>
-      <img src="../photos/kashmir_photo/kashmir3.jpeg" alt=""/>
+      <img src="photos/kashmir_photo/kashmir2.jpeg" alt=""/>
+      <img src="photos/kashmir_photo/kashmir10.jpeg" alt=""/>
+      <img src="photos/kashmir_photo/kashmir3.jpeg" alt=""/>
     </figure>
 
     <p>Closing paragraph. Reflection — what would you do differently, what will you remember?</p>
 
     <!-- Final full-width closer -->
     <figure class="photo">
-      <img src="../photos/kashmir_photo/kashmir5.jpeg" alt="Description"/>
+      <img src="photos/kashmir_photo/kashmir5.jpeg" alt="Description"/>
       <figcaption>Final caption</figcaption>
     </figure>
 
